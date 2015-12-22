@@ -5,10 +5,36 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'pascalprecht.translate'])
+
+  .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
+    $translateProvider.translations('en', {
+      submit: "Enter",
+      goodbye_message: "Goodbye"
+    });
+    $translateProvider.translations('en', {
+      submit: "Invio",
+      goodbye_message: "Goodbye"
+    });
+    $translateProvider.translations('es', {
+      submit: "Hola",
+      goodbye_message: "Adios"
+    });
+    $translateProvider.preferredLanguage("en");
+    $translateProvider.fallbackLanguage("en");
+  })
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
+      if (typeof navigator.globalization !== "undefined") {
+        navigator.globalization.getPreferredLanguage(function (language) {
+          $translate.use((language.value).split("-")[0]).then(function (data) {
+            console.log("SUCCESS -> " + data);
+          }, function (error) {
+            console.log("ERROR -> " + error);
+          });
+        }, null);
+      }
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       if (window.cordova && window.cordova.plugins.Keyboard) {
