@@ -41,10 +41,17 @@ angular.module('starter.controllers', ['starter.services'])
     };
   })
 
-  .controller('SessionsCtrl', function ($scope, Session) {
-    $scope.sessions = Session.query();
-  })
+  .controller('MyCtrl', function ($scope) {
+    var currentStart = 0
+    $scope.items = []
 
-  .controller('SessionCtrl', function ($scope, $stateParams, Session) {
-    $scope.session = Session.get({sessionId: $stateParams.sessionId});
-  })
+    $scope.addItems = function () {
+      for (var i = currentStart; i < currentStart + 20; i++) {
+        $scope.items.push("Item " + i)
+      }
+
+      currentStart += 20
+    }
+
+    $scope.addItems()
+  });

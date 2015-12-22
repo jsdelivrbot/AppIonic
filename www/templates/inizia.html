@@ -7,15 +7,29 @@
       </div>
       <div class="col col-10"></div>
     </div>
-    <div class="fixed-div">
-      <div class="col-offset-80" style="bottom:0px;position: fixed">
+    <ion-list ng-controller="MyCtrl">
+      <ion-item ng-repeat="item in items">
         <div class="row">
-          <button class="button button-balanced" style="width: 100%;">{{"crea" | translate}}</button>
+          <div class="col col-10"></div>
+          <div class="col col-80 col-center">
+            <h2>{{item}}</h2>
+          </div>
+          <div class="col col-10"></div>
         </div>
-        <div class="row">
-          <button class="button button-balanced" style="width: 100%; margin-top: 1em;margin-bottom: 2em;">{{"avvia" | translate}}</button>
-        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <div>
+    <div class="col-offset-80 fixed-div">
+      <div class="row">
+        <button class="button button-balanced" style="width: 100%;">{{"crea" | translate}}</button>
+      </div>
+      <div class="row">
+        <button class="button button-balanced" style="width: 100%; margin-top: 1em;margin-bottom: 2em;">{{"avvia" |
+          translate}}
+        </button>
       </div>
     </div>
-  </ion-content>
+  </div>
 </ion-view>

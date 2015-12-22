@@ -31,9 +31,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $translateProvider.preferredLanguage("en");
     $translateProvider.fallbackLanguage("en");
   })
-
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
+      document.addEventListener("deviceready", onDeviceReady, false);
+      function onDeviceReady() {
+        console.log(navigator.globalization);
+      }
+      console.log(navigator.globalization);
       if (typeof navigator.globalization !== "undefined") {
         navigator.globalization.getPreferredLanguage(function (language) {
           $translate.use((language.value).split("-")[0]).then(function (data) {
@@ -86,7 +90,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/inizia',
         views: {
           'menuContent': {
-            templateUrl: 'templates/inizia.html'
+            templateUrl: 'templates/inizia.html',
+            controller: 'MyCtrl'
           }
         }
       })
@@ -96,7 +101,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         views: {
           'menuContent': {
             templateUrl: "templates/impostazioni.html",
-            controller: 'SessionsCtrl'
           }
         }
       });

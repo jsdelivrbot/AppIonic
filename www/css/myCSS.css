@@ -1,7 +1,11 @@
-.no-style{
+.no-style {
   border: 0;
   width: 100%;
   background: transparent;
 }
-.generic-background{
+
+.fixed-div {
+  bottom: 0px;
+  position: absolute;
+  z-index: 1519;
 }
