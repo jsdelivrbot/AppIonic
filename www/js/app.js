@@ -10,15 +10,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $translateProvider.translations('en', {
       submit: "Enter",
-      goodbye_message: "Goodbye"
+      login: "Login",
+      inizia: "Start",
+      modalita: "Change",
+      impostazioni: "Settings",
+      crea: "Add",
+      avvia: "Play",
+      scegliLista: "Choose list"
     });
-    $translateProvider.translations('en', {
+    $translateProvider.translations('it', {
       submit: "Invio",
-      goodbye_message: "Goodbye"
-    });
-    $translateProvider.translations('es', {
-      submit: "Hola",
-      goodbye_message: "Adios"
+      login: "Login",
+      inizia: "Inizia",
+      modalita: "Modalita",
+      impostazioni: "Impostazioni",
+      crea: "Crea",
+      avvia: "Avvia",
+      scegliLista: "Scegli lista"
     });
     $translateProvider.preferredLanguage("en");
     $translateProvider.fallbackLanguage("en");
@@ -65,45 +73,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'AppCtrl'
       })
 
-      .state('app.search', {
-        url: '/search',
+      .state('app.modalita', {
+        url: '/modalita',
         views: {
           'menuContent': {
-            templateUrl: 'templates/search.html'
+            templateUrl: 'templates/modalita.html'
           }
         }
       })
 
-      .state('app.browse', {
-        url: '/browse',
+      .state('app.inizia', {
+        url: '/inizia',
         views: {
           'menuContent': {
-            templateUrl: 'templates/browse.html'
+            templateUrl: 'templates/inizia.html'
           }
         }
       })
 
-      .state('app.sessions', {
-        url: "/sessions",
+      .state('app.impostazioni', {
+        url: "/impostazioni",
         views: {
           'menuContent': {
-            templateUrl: "templates/sessions.html",
+            templateUrl: "templates/impostazioni.html",
             controller: 'SessionsCtrl'
-          }
-        }
-      })
-
-      .state('app.session', {
-        url: "/sessions/:sessionId",
-        views: {
-          'menuContent': {
-            templateUrl: "templates/session.html",
-            controller: 'SessionCtrl'
           }
         }
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/sessions');
+    $urlRouterProvider.otherwise('/app/inizia');
 
   });
