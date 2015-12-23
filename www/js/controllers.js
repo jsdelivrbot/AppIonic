@@ -41,17 +41,48 @@ angular.module('starter.controllers', ['starter.services'])
     };
   })
 
-  .controller('MyCtrl', function ($scope) {
-    var currentStart = 0
-    $scope.items = []
-
+  .controller('MyWords', function ($scope, $stateParams) {
+    $scope.itemsW = [];
+    currentStart = 0
     $scope.addItems = function () {
       for (var i = currentStart; i < currentStart + 20; i++) {
-        $scope.items.push("Item " + i)
+        $scope.itemsW.push({
+          word: "W " + i + " Lista: " + $stateParams.listId,
+          word1: "W2 " + i + " Lista: " + $stateParams.listId
+        });
       }
 
       currentStart += 20
     }
 
     $scope.addItems()
+
+    $scope.onItemDelete = function (item) {
+      $scope.itemsW.splice($scope.itemsW.indexOf(item), 1);
+    };
+  })
+
+  .controller('MyList', function ($scope) {
+    $scope.items = []
+    currentStart = 0
+    $scope.addItems = function () {
+      for (var i = currentStart; i < currentStart + 20; i++) {
+        $scope.items.push({
+          itm: "Item " + i,
+          id: i
+        });
+      }
+
+      currentStart += 20
+    }
+
+    $scope.addItems()
+
+    $scope.onItemDelete = function (item) {
+      $scope.items.splice($scope.items.indexOf(item), 1);
+    };
+
+    $scope.edit = function(item) {
+      location.href='#/app/crea/'+item.id;
+    };
   });

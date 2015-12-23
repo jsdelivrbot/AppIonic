@@ -37,6 +37,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       function onDeviceReady() {
         console.log(navigator.globalization);
       }
+
       console.log(navigator.globalization);
       if (typeof navigator.globalization !== "undefined") {
         navigator.globalization.getPreferredLanguage(function (language) {
@@ -91,7 +92,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         views: {
           'menuContent': {
             templateUrl: 'templates/inizia.html',
-            controller: 'MyCtrl'
+            controller: 'MyList'
+          }
+        }
+      })
+
+      .state('app.crea', {
+        url: '/crea/:listId',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/crea.html',
+            controller: 'MyWords'
           }
         }
       })

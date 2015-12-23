@@ -7,14 +7,23 @@
       </div>
       <div class="col col-10"></div>
     </div>
-    <ion-list ng-controller="MyCtrl">
+    <ion-list ng-controller="MyList">
       <ion-item ng-repeat="item in items">
         <div class="row">
-          <div class="col col-10"></div>
-          <div class="col col-80 col-center">
-            <h2>{{item}}</h2>
+          <div class="col col-20">
+            <div class="row">
+              <button class="no-style" ng-click="edit(item)"><i
+                class="icon ion-compose"
+                style="font-size: 30px;"></i>
+              </button>
+              <button class="no-style" ng-click="onItemDelete(item)"><i class="icon ion-trash-a"
+                                                                        style="font-size: 30px;margin-left: 1em"></i>
+              </button>
+            </div>
           </div>
-          <div class="col col-10"></div>
+          <div class="col col-100 col-offset-30" style="margin-left: 70px;text-align: center">
+            <h2>{{item.itm}}</h2>
+          </div>
         </div>
       </ion-item>
     </ion-list>
