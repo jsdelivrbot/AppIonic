@@ -7,27 +7,35 @@
       </div>
       <div class="col col-10"></div>
     </div>
-      <ion-list ng-controller="MyWords">
-        <ion-item ng-repeat="item in itemsW">
-          <div class="row">
-            <div class="col">
-              <button class="no-style" ng-click="onItemDelete(item)"><i class="icon ion-trash-a" style="font-size: 30px;"></i></button>
-            </div>
-            <div class="col col-80 col-center">
-              <div class="row">
-                <div class="col col-50">
-                  <h2>{{item.word}}</h2>
-                </div>
-                <div class="col col-10"><i class="icon ion-ios-arrow-thin-right"></i>
-                </div>
-                <div class="col col-50">
-                  <h2>{{item.word1}}</h2>
-                </div>
+    <ion-list>
+      <ion-item ng-repeat="item in itemsW">
+        <div class="row">
+          <div class="col">
+            <button class="no-style" ng-click="onItemDelete(item)"><i class="icon ion-trash-a"
+                                                                      style="font-size: 30px;"></i></button>
+          </div>
+          <div class="col col-80 col-center">
+            <div class="row">
+              <div class="col col-50">
+                <h2>{{item.word}}</h2>
+              </div>
+              <div class="col col-10"><i class="icon ion-ios-arrow-thin-right"></i>
+              </div>
+              <div class="col col-50">
+                <h2>{{item.word1}}</h2>
               </div>
             </div>
-            <div class="col"><a class="icon ion-compose" href="#/app/crea"></a></div>
           </div>
-        </ion-item>
-      </ion-list>
+          <div class="col"><a class="icon ion-compose" href="#/app/crea"></a></div>
+        </div>
+      </ion-item>
+    </ion-list>
   </ion-content>
+
+  <div class="col-offset-80 fixed-div" style="margin-bottom: 2em;">
+    <div class="row">
+      <button class="button button-balanced" style="width: 100%;" ng-click="words()">{{"crea" | translate}}
+      </button>
+    </div>
+  </div>
 </ion-view>

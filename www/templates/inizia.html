@@ -7,7 +7,7 @@
       </div>
       <div class="col col-10"></div>
     </div>
-    <ion-list ng-controller="MyList">
+    <ion-list>
       <ion-item ng-repeat="item in items">
         <div class="row">
           <div class="col col-20">
@@ -21,24 +21,27 @@
               </button>
             </div>
           </div>
-          <div class="col col-100 col-offset-30" style="margin-left: 70px;text-align: center">
-            <h2>{{item.itm}}</h2>
-          </div>
+          <ion-radio ng-model="choice" ng-value="'{{item.title}}'" style="height: 100%;width: 100%; padding: 0;
+border: none;">
+            <div class="col col-offset-30" style="text-align: center">
+              <h2>{{item.title}}</h2>
+            </div>
+          </ion-radio>
         </div>
       </ion-item>
     </ion-list>
   </ion-content>
 
-  <div>
-    <div class="col-offset-80 fixed-div">
-      <div class="row">
-        <button class="button button-balanced" style="width: 100%;">{{"crea" | translate}}</button>
-      </div>
-      <div class="row">
-        <button class="button button-balanced" style="width: 100%; margin-top: 1em;margin-bottom: 2em;">{{"avvia" |
-          translate}}
-        </button>
-      </div>
+  <div class="col-offset-80 fixed-div">
+    <div class="row">
+      <button class="button button-balanced" style="width: 100%;" ng-click="create();">{{"crea" | translate}}
+      </button>
+    </div>
+    <div class="row">
+      <button class="button button-balanced" style="width: 100%; margin-top: 1em;margin-bottom: 2em;">{{"avvia" |
+        translate}}
+      </button>
     </div>
   </div>
+
 </ion-view>

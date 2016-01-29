@@ -1,0 +1,26 @@
+<ion-view view-title="DBTEST">
+  <ion-content>
+    <ion-pane ng-controller="ExampleController">
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Ionic Blank Starter</h1>
+        <button class="right button button-icon icon ion-plus" ng-click="create();"></button>
+      </ion-header-bar>
+      <ion-list>
+        <div style="margin-top: 40px">
+          <ion-item ng-repeat="todo in todos">
+            <div class="row">
+              <h3>{{todo.title}}</h3>
+            </div>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-pane>
+  </ion-content>
+  <div class="col-offset-80 fixed-div">
+
+    <div class="row">
+      <button class="button button-balanced" style="width: 100%;" ng-click="create();">{{"crea" | translate}}
+      </button>
+    </div>
+  </div>
+</ion-view>

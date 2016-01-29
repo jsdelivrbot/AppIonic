@@ -1,0 +1,25 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">{{"parola" | translate}}</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeWords()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="doWords()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">{{"parolaO" | translate}}</span>
+          <input type="text" ng-model="wordData.one">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">{{"parolaT" | translate}}</span>
+          <input type="text" ng-model="wordData.two">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">{{"salva" | translate}}</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
