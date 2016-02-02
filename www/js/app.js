@@ -8,9 +8,8 @@
 
 var start = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'pascalprecht.translate']);
 var localDB = new PouchDB('db-glossary-local', {adapter: 'websql'});
-var remoteDB = new PouchDB('http://192.168.1.130:5984/db-remote-glossary');
+var remoteDB = new PouchDB('http://localhost:5984/db-remote');
 var globalization = navigator.globalization;
-
 
 
 start.run(function ($ionicPlatform) {
@@ -59,7 +58,8 @@ start.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     parola: "Words",
     parolaO: "Word One",
     parolaT: "Word Two",
-    DBTest: "DBTest"
+    DBTest: "DBTest",
+    finito: "End"
   });
   $translateProvider.translations('it', {
     submit: "Invio",
@@ -108,6 +108,16 @@ start.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
         'menuContent': {
           templateUrl: 'templates/crea.html',
           controller: 'AppWords'
+        }
+      }
+    })
+
+    .state('app.gioca', {
+      url: '/gioca/:listId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/gioca.html',
+          controller: 'AppGioca'
         }
       }
     })

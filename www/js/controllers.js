@@ -40,10 +40,22 @@ angular.module('starter.controllers', [])
     };
   })
 
+  .controller('AppGioca', function (ArrayWords, $stateParams, $scope, $ionicModal, $state) {
+    $scope.itemsW = ArrayWords;
+    if (ArrayWords.getList().indexOf($stateParams.listId) === -1) {
+      $scope.itemsW.addItemms($stateParams.listId);
+    }
+    $scope.itemsW = shuffle($scope.itemsW);
+    console.log('Doing wordData' + $scope.itemsW);
+    $scope.end = function () {
+      $scope.$on('$ionicView.loaded');
+      $state.transitionTo('app.inizia');
+    };
+  })
 
   .controller('AppWords', function (ArrayWords, $stateParams, $scope, $ionicModal, $timeout) {
     $scope.itemsW = ArrayWords;
-    if(ArrayWords.getList().indexOf($stateParams.listId)===-1) {
+    if (ArrayWords.getList().indexOf($stateParams.listId) === -1) {
       $scope.itemsW.addItemms($stateParams.listId);
     }
     console.log('Doing wordData' + $scope.itemsW);
@@ -82,6 +94,7 @@ angular.module('starter.controllers', [])
         word1: $scope.wordData.two
       };
       $scope.itemsW.addItemm(itemTmp);
+      $scope.wordData = {};
       $scope.modal.hide();
     };
   })
@@ -89,26 +102,29 @@ angular.module('starter.controllers', [])
   .controller('MyList', function ($ionicPopup, PouchDBListener, $scope) {
       $scope.items = [];
 
-      localDB.allDocs({
-        include_docs: true,
-        attachments: true,
-        startkey: 'listGlossary_',
-        endkey: 'listGlossary_\uffff'
-      }).then(function (result) {
-        for (i = 0; i < result.total_rows; i++)
-          $scope.items.push(result.rows[i].doc);
-        console.log(result);
-      }).catch(function (err) {
-        console.log(err);
-      });
-
+      $scope.addAllList = function () {
+        localDB.allDocs({
+          include_docs: true,
+          attachments: true,
+          startkey: 'listGlossary_',
+          endkey: 'listGlossary_\uffff'
+        }).then(function (result) {
+          for (i = 0; i < result.total_rows; i++)
+            $scope.items.push(result.rows[i].doc);
+          console.log(result);
+        }).catch(function (err) {
+          console.log(err);
+        });
+      };
+      $scope.addAllList();
       $scope.create = function () {
         $ionicPopup.prompt({
             title: 'Enter a new TODO item',
             inputType: 'text'
           })
           .then(function (result) {
-            if (result !== "") {
+            if (result !== undefined) {
+              console.log(result);
               if ($scope.hasOwnProperty("items") !== true) {
                 $scope.items = [];
               }
@@ -133,8 +149,20 @@ angular.module('starter.controllers', [])
       $scope.edit = function (item) {
         location.href = '#/app/crea/' + item.title;
       };
+      $scope.chooseList = {
+        list: 'None'
+      };
+      $scope.playGame = function () {
+        if ($scope.chooseList.list !== 'None') {
+          console.log($scope.chooseList);
+          location.href = '#/app/gioca/' + $scope.chooseList.list;
+        } else {
+          console.log("Select a item");
+        }
+      };
     }
   )
+
 
   .controller("ExampleController", function ($scope, $ionicPopup, PouchDBListener) {
 

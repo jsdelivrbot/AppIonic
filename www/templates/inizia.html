@@ -1,5 +1,5 @@
 <ion-view view-title="{{'inizia' | translate}}">
-  <ion-content>
+  <ion-content overflow-scroll="true" has-bouncing="false">
     <div class="row">
       <div class="col col-10"></div>
       <div class="col col-80 col-center">
@@ -7,29 +7,36 @@
       </div>
       <div class="col col-10"></div>
     </div>
-    <ion-list>
+
+    <ion-list can-swipe="true">
+
       <ion-item ng-repeat="item in items">
-        <div class="row">
-          <div class="col col-20">
-            <div class="row">
-              <button class="no-style" ng-click="edit(item)"><i
-                class="icon ion-compose"
-                style="font-size: 30px;"></i>
-              </button>
-              <button class="no-style" ng-click="onItemDelete(item)"><i class="icon ion-trash-a"
-                                                                        style="font-size: 30px;margin-left: 1em"></i>
-              </button>
+        <div class="row" style="height: 10%;">
+          <div class=" col col-66">
+            <div class="row" style="min-width: 140px;">
+              <div class="col col-100" style="text-align: center;">
+                <ion-radio ng-model="chooseList.list" ng-value="'{{item.title}}'"
+                           style="padding: 0; border: none;z-index: 11111">
+                  <h2>{{item.title}}</h2>
+                </ion-radio>
+              </div>
             </div>
           </div>
-          <ion-radio ng-model="choice" ng-value="'{{item.title}}'" style="height: 100%;width: 100%; padding: 0;
-border: none;">
-            <div class="col col-offset-30" style="text-align: center">
-              <h2>{{item.title}}</h2>
-            </div>
-          </ion-radio>
+          <div class="col col-33" style="min-width: 140px;">
+            <ion-option-button class="no-style" ng-click="edit(item)"><i
+              class="icon ion-compose"
+              style="font-size: 3em;"></i>
+            </ion-option-button>
+            <ion-option-button class="no-style" ng-click="onItemDelete(item)"><i class="icon ion-trash-a"
+                                                                                 style="font-size: 3em;"></i>
+            </ion-option-button>
+          </div>
         </div>
       </ion-item>
+
+
     </ion-list>
+
   </ion-content>
 
   <div class="col-offset-80 fixed-div">
@@ -38,7 +45,8 @@ border: none;">
       </button>
     </div>
     <div class="row">
-      <button class="button button-balanced" style="width: 100%; margin-top: 1em;margin-bottom: 2em;">{{"avvia" |
+      <button class="button button-balanced" style="width: 100%; margin-top: 1em;margin-bottom: 2em;"
+              ng-click="playGame();">{{"avvia" |
         translate}}
       </button>
     </div>

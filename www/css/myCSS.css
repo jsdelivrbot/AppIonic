@@ -8,3 +8,28 @@
   position: absolute;
   z-index: 1519;
 }
+
+.scroll-bar {
+  visibility: hidden !important;
+}
+
+.overflow-scroll {
+  overflow-y: hidden;
+}
+
+.item-radio .radio-icon {
+  padding: 0px;
+}
+
+.item-complex .item-content, .item-radio .item-content {
+  padding: 8px 8px 8px 8px;
+}
+
+.boxTextGame {
+  padding: 0 0 0 0;
+  border-style: dashed;
+  border-color: #00A000;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
