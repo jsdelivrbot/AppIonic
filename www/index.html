@@ -12,22 +12,56 @@
   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
   <link href="css/ionic.app.css" rel="stylesheet">
   -->
-  <script src="lib\jquery-2.2.0.min\index.js"></script>
+  <script src="lib/jquery-2.2.0.min/index.js"></script>
   <!-- ionic/angularjs js -->
-  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-animate/angular-animate.js"></script>
+  <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+  <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="lib/ionic/js/ionic.js"></script>
+  <script src="lib/ionic/js/ionic-angular.js"></script>
   <script src="lib/ionic/js/angular/angular-resource.js"></script>
-  <script src="lib/ionic/js/angular/angular-translate.min.js"></script>
+  <script src="lib/angular-translate/angular-translate.js"></script>
+  <script src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
   <script src="lib/pouchdb/dist/pouchdb.js"></script>
   <script src="lib/myJs.js"></script>
 
   <!-- cordova script (this will be a 404 during development) -->
-
   <!-- your app's js -->
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/services.js"></script>
+
+  <!-- bower:js -->
+
+  <!-- endbower -->
+
+
 </head>
 <body ng-app="starter">
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '456130457919622',
+      xfbml: true,
+      version: 'v2.5'
+    });
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<div id="fb-root">
+</div>
 <ion-nav-view></ion-nav-view>
+<script src="lib/facebook-connect-plugin/index.js"></script>
 </body>
 </html>

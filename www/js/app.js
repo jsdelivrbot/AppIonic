@@ -9,26 +9,10 @@
 var start = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'pascalprecht.translate']);
 var localDB = new PouchDB('db-glossary-local', {adapter: 'websql'});
 var remoteDB = new PouchDB('http://localhost:5984/db-remote');
-var globalization = navigator.globalization;
 
 
 start.run(function ($ionicPlatform) {
   $ionicPlatform.ready(function () {
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-      console.log(globalization);
-    }
-
-    console.log(globalization);
-    if (typeof globalization !== "undefined") {
-      navigator.globalization.getPreferredLanguage(function (language) {
-        $translate.use((language.value).split("-")[0]).then(function (data) {
-          console.log("SUCCESS -> " + data);
-        }, function (error) {
-          console.log("ERROR -> " + error);
-        });
-      }, null);
-    }
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -45,42 +29,31 @@ start.run(function ($ionicPlatform) {
 })
 
 start.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
-  $translateProvider.translations('en', {
-    submit: "Enter",
-    login: "Login",
-    inizia: "Start",
-    salva: "Save",
-    modalita: "Change",
-    impostazioni: "Settings",
-    crea: "Add",
-    avvia: "Play",
-    scegliLista: "Choose list",
-    parola: "Words",
-    parolaO: "Word One",
-    parolaT: "Word Two",
-    DBTest: "DBTest",
-    finito: "End"
-  });
-  $translateProvider.translations('it', {
-    submit: "Invio",
-    login: "Login",
-    inizia: "Inizia",
-    modalita: "Modalita",
-    impostazioni: "Impostazioni",
-    crea: "Crea",
-    avvia: "Avvia",
-    scegliLista: "Scegli lista",
-    DBTest: "DBTest"
-  });
+
+  $translateProvider.useStaticFilesLoader({
+    prefix: 'locales/',
+    suffix: '.json'
+  })
+  $translateProvider.registerAvailableLanguageKeys(['en', 'it'], {
+    'en': 'en', 'en_GB': 'en', 'en_US': 'en',
+    'de': 'de', 'de_DE': 'de', 'de_CH': 'de',
+    'it': 'it', 'it_IT': 'it',
+    '*': 'en'
+  })
+
   $translateProvider.preferredLanguage("en");
   $translateProvider.fallbackLanguage("en");
+  $translateProvider.determinePreferredLanguage();
+
+
+  $translateProvider.useSanitizeValueStrategy('escapeParameters');
   $stateProvider
   // setup an abstract state for the tabs directive
     .state('app', {
       url: '/app',
       abstract: true,
       templateUrl: 'templates/menu.html',
-      controller: 'AppCtrl'
+      controller: 'WelcomeCtrl'
     })
 
     .state('app.modalita', {
